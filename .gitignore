@@ -1,4 +1,7 @@
+.*
+~*
+*.RProj
+*.png
+*.mp4
+*.gif
 .Rproj.user
-.Rhistory
-.RData
-.Ruserdata
