@@ -1,7 +1,7 @@
 #plotting  zooplankton abundance and larval fish abundance
 {
   rm(list=ls());
-  options(show.error.locations=T);
+  options(show.error.locations=TRUE);
   
   library(tidyverse)
   library(lubridate)
