@@ -71,7 +71,8 @@ ggplot(data = larvFishErie)+geom_point(mapping = aes(x=SetDate,y=LarvalSum))
 
 
 larvFishErie$SetDate <- dmy(larvFishErie$SetDate)
-ggplot(data = larvFishErie)+geom_point(mapping = aes(x=SetDate,y=LarvalSum))
+ggplot(data = larvFishErie)+
+  geom_point(mapping = aes(x=SetDate,y=LarvalSum))
 larvFishErie$year <- year(larvFishErie$SetDate)
 larvFishErie$month <- month(larvFishErie$SetDate)
 larvFishErie$day <- day(larvFishErie$SetDate)
