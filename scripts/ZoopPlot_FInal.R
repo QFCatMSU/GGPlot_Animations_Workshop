@@ -15,10 +15,17 @@
   bass$year <- mapvalues(bass$year, from = c(2011,2014,2015,2016), to = c(2008,2009,2010,2011))
   zooplank$year <- zooplank$year4
   
-  ggplot(data=zooplank, aes(x=month,y=abundance/1000))+
-    geom_smooth(color="orange")+
-    geom_smooth(data=sucker, aes(x=month,y=abundance), color="purple")+
-    facet_wrap(~year)
-  
+  coeff <- max(sucker$abundance)/max(zooplank$abundance)
+  ggplot()+
+    geom_line(data=zooplank, aes(x=month,y=abundance,color="Zooplankton"),size=1.25)+
+    geom_line(data=sucker, aes(x=month,y=abundance/coeff,color="White Sucker"), size= 1.25)+
+    scale_y_continuous(
+      # Features of the first axis
+      name = "Zooplankton abundance",
+      # Add a second axis and specify its features
+      sec.axis = sec_axis(~.*coeff, name="White Sucker abundance"))+
+    facet_wrap(~year)+
+    labs(title="Zooplankton vs. White sucker abundance",color="Species")
+    #scale_color_manual(values=list("White Sucker"="blue","Zooplankton"="orange"))
   
 }
