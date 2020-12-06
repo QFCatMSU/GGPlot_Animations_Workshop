@@ -138,11 +138,11 @@
   #larval dataplot
   larvFishDR1 <- larvFishDR1 %>% filter(year %in% c(2010,2014,2015,2016))
   write_csv(larvFishDR1,
-            "C:/Users/Matt Zink/OneDrive - Michigan State University/Animation/GGPlot_Animations_Workshop/data/whitesucker_final.csv")
+            "data/whitesucker_final.csv")
   fakedata <- data.frame(daynum = unique(pauldat$daynum),abundance = 0);
   larvFishDR2 <- larvFishDR2 %>% filter(year %in% c(2011,2014,2015,2016))
   write_csv(larvFishDR2,
-            "C:/Users/Matt Zink/OneDrive - Michigan State University/Animation/GGPlot_Animations_Workshop/data/whitebass_final.csv")
+            "data/whitebass_final.csv")
   
   
   write_csv(fakedata, file = "data/fakeLarvalData.csv");
