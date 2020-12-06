@@ -42,14 +42,20 @@
     facet_wrap(vars(year4));
   
   peterdat <- data %>% filter(lakename == "Peter Lake")
-  peterdat1 <- peterdat %>% group_by(year4,daynum,group_code) %>% 
+  peterdat$month <- month(peterdat$sampledate)
+  peterdat1 <- peterdat %>% group_by(year4,month,group_code) %>% 
     summarise(
       abundance = sum(abundance)
     );
   #make dataframe from years 2008 to 2011;
   ggplot(data=peterdat1 %>% filter(group_code == "CLAD" & year4 >=2000))+
-    geom_point(mapping = aes(x= daynum,y=abundance))+
+    geom_point(mapping = aes(x= month,y=abundance))+
     facet_wrap(vars(year4));
+  
+  zooplank_final <- peterdat1 %>% filter(group_code=="CLAD",year4>2007, year4<2012)
+  
+  write.csv(zooplank_final, "data/zooplank_final.csv")
+  
   ggplot(data=peterdat1 %>% filter(group_code == "CLAD" & year4 ==2013))+
     geom_point(mapping = aes(x= daynum,y=abundance));
   
