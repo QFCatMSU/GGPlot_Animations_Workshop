@@ -46,10 +46,12 @@
     summarise(
       abundance = sum(abundance)
     );
-  
+  #make dataframe from years 2008 to 2011;
   ggplot(data=peterdat1 %>% filter(group_code == "CLAD" & year4 >=2000))+
     geom_point(mapping = aes(x= daynum,y=abundance))+
     facet_wrap(vars(year4));
+  ggplot(data=peterdat1 %>% filter(group_code == "CLAD" & year4 ==2013))+
+    geom_point(mapping = aes(x= daynum,y=abundance));
   
   ggplot(data=peterdat1 %>% filter(group_code == "CLAD" & year4 <=2000))+
     geom_point(mapping = aes(x= daynum,y=abundance))+
@@ -104,21 +106,38 @@
   larvFishDR$year <- year(larvFishDR$SetDate);
   larvFishDR$month <- month(larvFishDR$SetDate);
   larvFishDR$day <- day(larvFishDR$SetDate);
+  #larvFishDR <- larvFishDR %>% select(SetDate,month,day,year,Cyprinidae)
+  larvFishDR2 <- larvFishDR %>% select(SetDate,month,day,year,Morone)
   
-  larvFishDR1 <- larvFishDR %>% group_by(year,month,day) %>% 
+  ggplot(data = larvFishDR %>% filter(year==2015))+
+    geom_point(mapping = aes(x=SetDate,y=Cyprinidae));
+  
+  larvFishDR1 <- larvFishDR %>% group_by(year,month) %>% 
     summarise(
-      abundance = sum(LarvalSum)
+      abundance = sum(Cyprinidae)
     );
-  
+  larvFishDR2 <- larvFishDR2 %>% group_by(year,month) %>% 
+    summarise(
+      abundance = sum(Morone)
+    );
   ggplot(data = larvFishDR1 %>% filter(year==2015))+
-    geom_point(mapping = aes(x=day,y=abundance));
+    geom_point(mapping = aes(x=month,y=abundance));
   
   ggplot(data = larvFishDR1)+
-    geom_point(mapping = aes(x=day,y=abundance))+
+    geom_point(mapping = aes(x=month,y=abundance))+
     facet_wrap(vars(year));
-  
-  
+  ggplot(data = larvFishDR2)+
+    geom_point(mapping = aes(x=month,y=abundance))+
+    facet_wrap(vars(year));
+  #larval dataplot
+  larvFishDR1 <- larvFishDR1 %>% filter(year %in% c(2010,2014,2015,2016))
+  write_csv(larvFishDR1,
+            "C:/Users/Matt Zink/OneDrive - Michigan State University/Animation/GGPlot_Animations_Workshop/data/LarvalFishFinal.csv")
   fakedata <- data.frame(daynum = unique(pauldat$daynum),abundance = 0);
+  larvFishDR2 <- larvFishDR2 %>% filter(year %in% c(2011,2014,2015,2016))
+  write_csv(larvFishDR2,
+            "C:/Users/Matt Zink/OneDrive - Michigan State University/Animation/GGPlot_Animations_Workshop/data/Activity_LarvalFishFinal.csv")
+  
   
   write_csv(fakedata, file = "data/fakeLarvalData.csv");
   
