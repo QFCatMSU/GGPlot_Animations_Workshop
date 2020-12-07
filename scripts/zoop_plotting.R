@@ -52,7 +52,7 @@
     geom_point(mapping = aes(x= month,y=abundance))+
     facet_wrap(vars(year4));
   
-  zooplank_final <- peterdat1 %>% filter(group_code=="CLAD",year4>=2000)
+  zooplank_final <- peterdat1 %>% filter(group_code=="CLAD",year4>2004, year4<2010, year4!=2006)
   
   write.csv(zooplank_final, "data/zooplankton_final.csv")
   
