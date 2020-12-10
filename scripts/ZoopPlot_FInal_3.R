@@ -33,6 +33,7 @@
   #           to blue instead. Change Month label to actual months. I like showing off
   #           multiple features here, will definitely save some time.
   
+  # Charlie: I agree -- the switch to month abbreviated should be here (maybe a 1b)
 
   
   # Part 2 Teaching goals ####
@@ -86,6 +87,8 @@
     geom_line(mapping=aes(x=month, y=zooplankton, linetype=as.factor(year)),
               size=1.25) +
     theme_minimal() +
+    theme(legend.position = c(.8,.8),          # change placement 
+          legend.key.width = unit(3,"cm")) +   # change width
     labs(title="Zooplankton abundance",
          subtitle="2008",
          x="Month by Number",
@@ -97,6 +100,9 @@
   #           see them very well. By doing this, however, the legend became useless. Any way
   #           to fix that?
   
+  # Charlie --
+  #   Color blind: the answer is yes...but not worth it here
+  #   Legend: I modified it -- the answer to questions like these are often "in the theme()"
   
   
   # Part 4 Teaching goals ####
@@ -137,6 +143,7 @@
     geom_line(mapping=aes(x=month, y=whitebass/coeff_WB_Zoo, color="White Bass"), 
               size= 1.25) +
     scale_y_continuous(name = "Zooplankton abundance",              # first axis
+                       labels = scales::comma, # change to regular notation
                        sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
                                            name="White Bass abundance")) +
     facet_wrap(facets = ~year) +
@@ -152,6 +159,8 @@
   #           One thing I would maybe consider would be to represent the zooplankton abundance
   #           without scientific notation. Is there a way to do this that makes it easy to read?
   
+  # Charlie
+  #   Change to regular notation -- unusure which way I like...
 
   # Part 5 Teaching goals ####
   # - months -- abbreviating and factoring 
