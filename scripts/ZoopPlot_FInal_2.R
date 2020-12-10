@@ -80,9 +80,9 @@
   # gganimate does not transition between the lines like it does with points, 
   # it just pops one line out of existence and puts the next line in.  
   
-  # plot(plot0);
-  # plot(plot1);
-  # plot(plot2);
+  plot(plot0);
+  plot(plot1);
+  plot(plot2);
   # print(plotAnim);
   # 
   # # anim_save() also take parameters from animate()
