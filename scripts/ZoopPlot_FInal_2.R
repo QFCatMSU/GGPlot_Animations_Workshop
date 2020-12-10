@@ -9,67 +9,154 @@
   library(package=gganimate);
   library(package=av);          # to create mp4 videos
   
-  # not necessary needed but I think it is important to know about these parameters
+  # Part 1 Teaching goals ####
+  # - parameters for read.csv
+  # - plotting data as points
+  # - styling the points
+  # - titles
+  
+  # the parameters are not necessary needed but I think it is important to know about them
   abundanceData = read.csv(file="data/final-Charlie.csv", sep=",",
                            header=TRUE, na.strings = c("", NA),
                            stringsAsFactors = FALSE);
   
-  # there is now NA values in the data frame that we need to deal with
-  coeffWS_Zoo = max(abundanceData$whitesucker, na.rm=TRUE) /  # do not use T!
-                max(abundanceData$zooplankton, na.rm=TRUE);
+  # just print out the points of data
+  plot1 = ggplot(data=abundanceData)+
+    geom_point(mapping=aes(x=month, y=zooplankton),
+               color="red",
+               size=2,
+               shape=4) +
+    labs(title="Zooplankton abundance",
+         subtitle="2008-2011");
   
-  coeffWB_Zoo = max(abundanceData$whitebass, na.rm=TRUE) /  
-                max(abundanceData$zooplankton, na.rm=TRUE);
-  
+  # Part 2 Teaching goals ####
+  # - subset data
+  # - plotting data as lines
+  # - axis labels
+  # - themes
   
   # subset data and color is used as a style change here -- it is not mapped to data
   year2008 = which(abundanceData$year == 2008);
   
-  plot0 = ggplot(data=abundanceData[year2008,])+
+  plot2 = ggplot(data=abundanceData[year2008,])+
     geom_line(mapping=aes(x=month, y=zooplankton),
-              color="red") +
+              color="red",
+              size=1.5,
+              linetype=3) +
+    theme_bw() +
     labs(title="Zooplankton abundance",
-         color="Year");
+         subtitle="2008",
+         x="Month by Number",
+         y="Number of Zooplankton");
+  
+  # Part 3 Teaching goals ####
+  # - mapping a 3rd variable (year to color)
+  # - continuous vs discrete mapping
+  # - legend
+  # - labels on a legend
   
   # color is used as a mapping variable to map the 4 years to the plot --
   # if you just do color=year then year will be treated as a continuous value (try it!)
-  plot1 = ggplot(data=abundanceData)+
+  plot3 = ggplot(data=abundanceData)+
     geom_line(mapping=aes(x=month, y=zooplankton, color=as.factor(year)),
-              size=1.25) +
+  #            color="blue",   # leaving this in will cause problems!
+              size=1.5,
+              linetype=2) +
+    theme_bw() +
     labs(title="Zooplankton abundance",
-         color="Year");
+         subtitle="2008",
+         x="Month by Number",
+         y="Number of Zooplankton",
+         color="Year"); # if you don't have this, the label will be as.factor(year)
   
+  # Can also map linetype or size
+  plot3b = ggplot(data=abundanceData)+
+    geom_line(mapping=aes(x=month, y=zooplankton, linetype=as.factor(year))) +
+    theme_minimal() +
+    labs(title="Zooplankton abundance",
+         subtitle="2008",
+         x="Month by Number",
+         y="Number of Zooplankton",
+         linetype="Year");
+  
+  # Part 4 Teaching goals ####
+  # - mapping multiple plot (color maps to legend)
+  # - secondary axis
+  # - scaling math
+  # - overriding legend colors
+  # - facetting
+
   # color here "maps" the line to the legend under the term in quotes
-  # I find this to be an awkward feature of GGPlot 
-  plot2 = ggplot(data=abundanceData)+
+  # I find this to be an awkward feature of GGPlot
+  # And this plot obviously has a scale issue!
+  plot4 = ggplot(data=abundanceData)+
     geom_line(mapping=aes(x=month, y=zooplankton, color="Zooplankton"),
               size=1.25) +
-    geom_line(mapping=aes(x=month, y=whitebass/coeffWB_Zoo, color="White Bass"), 
+    geom_line(mapping=aes(x=month, y=whitebass, color="White Bass"), 
               size= 1.25) +
-    scale_y_continuous(name = "Zooplankton abundance",             # first axis
-                       sec.axis = sec_axis(trans= ~.*coeffWB_Zoo,  # second axis
+    facet_wrap(facets = ~year) +
+    theme_minimal() +
+    labs(title="Zooplankton vs. White bass abundance",
+         subtitle="2008-2011",
+         x="Month by Number",
+         y="Number of Zooplankton",
+         color="Species");
+  
+  # there is now NA values in the data frame that we need to deal with
+  coeff_WS_Zoo = max(abundanceData$whitesucker, na.rm=TRUE) /  # do not use T!
+    max(abundanceData$zooplankton, na.rm=TRUE);
+  
+  coeff_WB_Zoo = max(abundanceData$whitebass, na.rm=TRUE) /  
+    max(abundanceData$zooplankton, na.rm=TRUE);
+  
+  # add secondary axis, adjust scale and color, change month too abb
+  plot4b = ggplot(data=abundanceData)+
+    geom_line(mapping=aes(x=month, y=zooplankton, color="Zooplankton"),
+              size=1.25) +
+    geom_line(mapping=aes(x=month, y=whitebass/coeff_WB_Zoo, color="White Bass"), 
+              size= 1.25) +
+    scale_y_continuous(name = "Zooplankton abundance",              # first axis
+                       sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
                                            name="White Bass abundance")) +
     facet_wrap(facets = ~year) +
+    theme_minimal() +
     labs(title="Zooplankton vs. White bass abundance",
+         subtitle="2008-2011",
+         x="Month by Number",
+         y="Number of Zooplankton",
          color="Species") +
     scale_color_manual(values=c("White Bass"="blue","Zooplankton"="orange"));
 
+  # Part 5 Teaching goals ####
+  # - months -- abbreviating and factoring 
+  # - transitioning (animation)
+  # - group mapping (this seems so unnecessary...)
+  # - closest_state (year printed on plot)
+  # - RStudio Plots vs Viewer Tabs
+  
+  # get the abbreviations for months
+  months = month.abb[abundanceData$month];  # this will give you months alphabetically
+  months2 = factor(month.abb[abundanceData$month],levels=month.abb); # months in order
+  
   # To animate lines, we need to add "group" to the mapping
   # I do not know why -- this is also awkward!
   # I also switched from month numbers to month but this has 2 steps:
   #   1) convert numbers to month using month.abb
   #   2) Order the months by time instead of alphabetically
   # We will need to break this down if we teach it!
-  plotAnim = ggplot(data=abundanceData)+
-    geom_line(mapping=aes(x=factor(month.abb[month],levels=month.abb), y=zooplankton, 
+  plot5 = ggplot(data=abundanceData)+
+    geom_line(mapping=aes(x=months2, y=zooplankton, 
                           group=year, color="Zooplankton")) +
-    geom_line(mapping=aes(x=factor(month.abb[month],levels=month.abb), y=whitebass/coeffWB_Zoo, 
+    geom_line(mapping=aes(x=months2, y=whitebass/coeff_WB_Zoo, 
                           group=year, color="White Bass")) +
     scale_y_continuous(name = "Zooplankton abundance",             # first axis
-                       sec.axis = sec_axis(trans= ~.*coeffWB_Zoo,  # second axis
+                       sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
                                            name="White Bass abundance")) +
-    labs(title="Zooplankton vs. White bass abundance by {closest_state}",
-         x = "month")  +  # otherwise the label will be: factor(month.abb[month],levels=month.abb
+    labs(title="Zooplankton vs. White bass abundance",
+         subtitle="2008-2011",
+         x="Month by Number",
+         y="Number of Zooplankton",
+         color="Species") +
     theme_bw() +
     transition_states(states = year,         # year is a column in weatherData
                       transition_length = 1, # relative animation time (default: 1)  
@@ -80,10 +167,18 @@
   # gganimate does not transition between the lines like it does with points, 
   # it just pops one line out of existence and puts the next line in.  
   
-  plot(plot0);
   plot(plot1);
   plot(plot2);
-  # print(plotAnim);
+  plot(plot3);
+  plot(plot3b);
+  plot(plot4);
+  plot(plot4b);
+  print(plot5);
+  
+  # Part 6 Teaching goals ####
+  # - file saving
+  # - gifs and mp4
+  
   # 
   # # anim_save() also take parameters from animate()
   # anim_save(filename="media/abundance.gif",
