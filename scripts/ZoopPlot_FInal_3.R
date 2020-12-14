@@ -29,11 +29,12 @@
     labs(title="Zooplankton abundance",
          subtitle="2008-2011");
   plot1;
-  #Maguffee - Charlie, I'm having a hard time seeing the points here. Changed the color
+  # Maguffee - Charlie, I'm having a hard time seeing the points here. Changed the color
   #           to blue instead. Change Month label to actual months. I like showing off
   #           multiple features here, will definitely save some time.
   
   # Charlie: I agree -- the switch to month abbreviated should be here (maybe a 1b)
+  # Connor : Not a huge fan of the "X" shape type, but not super important.
 
   
   # Part 2 Teaching goals ####
@@ -56,10 +57,11 @@
          x="Month by Number",
          y="Number of Zooplankton");
   plot2
-  #Maguffee - Line type looked too close to a point plot; changed the line type to 2.
+  # Maguffee - Line type looked too close to a point plot; changed the line type to 2.
   #           I still think we should be plotting by month rather than month number;
   #           labels should reflect that.
   
+  # Connor: I agree with the above, should change it to a labeled factor
   
   # Part 3 Teaching goals ####
   # - mapping a 3rd variable (year to color)
@@ -81,6 +83,9 @@
          y="Number of Zooplankton",
          color="Year"); # if you don't have this, the label will be as.factor(year)
   plot3
+  
+  # Connor: While I like the idea of playing around with the linetype/color,
+  # this one is also difficult and I think it should be solid
   
   # Can also map linetype or size
   plot3b = ggplot(data=abundanceData)+
@@ -206,6 +211,9 @@
   #Maguffee - I think this looks fine. Definitely not a striking visual effect like animating
   #           with points, but it's a good starting point, and I think it works well with
   #           our example. I think we need to spend some time on this section.
+  
+  # Connor: I think its worth considering using points to get that effect. Mostly because I think
+  # it looks cooler.
   
   plot(plot1);
   plot(plot2);
