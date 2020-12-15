@@ -45,7 +45,7 @@
          subtitle="2008-2011",
          x="Month by Number",
          y="Number of Zooplankton",
-         color="Year"); # if you don't have this, the label will be factor(year)
+         color="--Year--"); # if you don't have this, the label will be factor(year)
   plot(plot3b);
   
   # The third mapped variable can also map linetype -- also moved the legend

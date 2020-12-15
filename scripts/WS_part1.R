@@ -13,7 +13,7 @@
   # the parameters are not necessary needed but I think it is important to know about them
   abundanceData = read.csv(file="data/final-Charlie.csv", sep=",",
                            header=TRUE, na.strings = c("", NA),
-                           stringsAsFactors = FALSE);
+                           stringsAsFactors = FALSE);  # mention R v3 vs 4
   
   # just print out the points of data
   plot1 = ggplot(data=abundanceData) +              # canvas created and data frame established

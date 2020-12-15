@@ -38,7 +38,7 @@
     scale_y_continuous(name = "Zooplankton abundance",             # first axis
                        sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
                                            name="White Bass abundance")) +
-    labs(title="Zooplankton vs. White bass abundance",
+    labs(title="Zooplankton vs. White bass abundance {closest_state}",
          subtitle="2008-2011",
          x="Month",
          y="Number of Zooplankton",
@@ -52,6 +52,7 @@
 
      print(plot5);
   
+  # tweak size of gif explain more bout tweaks in mp4
   # 
   # # anim_save() also take parameters from animate()
   # anim_save(filename="media/abundance.gif",
