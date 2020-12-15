@@ -53,6 +53,5 @@
          x="Month");   # set x-axis label manually
   plot(plot1c);
   
-  # Should we talk about the warning messages when plotting?
-  # These are the 
+  # Should we talk about the warning messages when plotting?=
 }

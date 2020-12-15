@@ -74,7 +74,7 @@
     scale_color_manual(values=c("White Bass"="blue","Zooplankton"="orange"));  # change line colors
   plot(plot4c);
   
-  # add secondary axis (advanced!)
+  # add secondary axis (***advanced***)
   plot4d = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=zooplankton, color="Zooplankton"),
               size=1.25) +
