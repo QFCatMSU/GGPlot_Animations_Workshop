@@ -12,8 +12,11 @@
   # Part 1 Teaching goals ####
   # - parameters for read.csv
   # - plotting data as points
-  # - styling the points
-  # - titles
+  # - styling the points (just comment about this)
+  # - titles and labels
+  # - using month abbreviations
+  
+  # R's built in constants (it's not much...): https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Constants
   
   # the parameters are not necessary needed but I think it is important to know about them
   abundanceData = read.csv(file="data/final-Charlie.csv", sep=",",
@@ -24,8 +27,8 @@
   plot1 = ggplot(data=abundanceData)+
     geom_point(mapping=aes(x=month, y=zooplankton),
                color="blue",
-               size=2,
-               shape=4) +
+               size=2,     # multiplier (x2)
+               shape=1) +  # can use values 1-6 for different shapes
     labs(title="Zooplankton abundance",
          subtitle="2008-2011");
   plot1;
@@ -36,6 +39,33 @@
   # Charlie: I agree -- the switch to month abbreviated should be here (maybe a 1b)
   # Connor : Not a huge fan of the "X" shape type, but not super important.
 
+  # change the month number to month abbreviation 
+  plot1b = ggplot(data=abundanceData)+
+    geom_point(mapping=aes(x=month.abb[month], y=zooplankton),
+               color="blue",
+               size=2,
+               shape=1) +  # can use values 1-6
+    labs(title="Zooplankton abundance",
+         subtitle="2008-2011");
+  plot1b;
+  # Two problems with the above:
+  # 1) The months are given alphabetiucally
+  # 2) The x-axis label changed to what x is equal to
+  
+  # one step at a time -- and can see results in Environment
+  months = month.abb[abundanceData$month];
+  months2 = factor(months, levels=month.abb); # months in order
+
+  plot1c = ggplot(data=abundanceData)+
+    geom_point(mapping=aes(x=months2, y=zooplankton),
+               color="blue",
+               size=2,
+               shape=1) +  # can use values 1-6
+    labs(title="Zooplankton abundance",
+         subtitle="2008-2011",
+         x="Month");
+  plot1c;
+  
   
   # Part 2 Teaching goals ####
   # - subset data
@@ -50,11 +80,13 @@
     geom_line(mapping=aes(x=month, y=zooplankton),
               color="red",
               size=1.5,
-              linetype=2) +
+              linetype=1) +   # can use #1-6
     theme_bw() +
+    scale_x_continuous(breaks=1:12, 
+                       labels= month.abb) +
     labs(title="Zooplankton abundance",
          subtitle="2008",
-         x="Month by Number",
+   #      x="Month",
          y="Number of Zooplankton");
   plot2
   # Maguffee - Line type looked too close to a point plot; changed the line type to 2.
@@ -216,12 +248,14 @@
   # it looks cooler.
   
   plot(plot1);
+  plot(plot1b);
+  plot(plot1c);
   plot(plot2);
   plot(plot3);
   plot(plot3b);
-  plot(plot4);
-  plot(plot4b);
-  print(plot5);
+  # plot(plot4);
+  # plot(plot4b);
+  # print(plot5);
   
   # Part 6 Teaching goals ####
   # - file saving
