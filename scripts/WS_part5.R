@@ -26,9 +26,9 @@
   # - animations
   # - saving as GIF
   # - saving as MP4
-  # - relative files in RStudio Projects
+  # - Locating files in RStudio Projects
   
-  # To animate lines, we need to add "group" to the mapping (don't know why)
+  # To animate lines, we need to add "group" to the mapping
   # 
   plot5 = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=zooplankton, 
@@ -47,8 +47,8 @@
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
     transition_states(states = year,         # map animation to the year
-                      transition_length = 1, # relative animation time (default: 1)  
-                      state_length = 2);     # relative pause time (default: 1)
+                      transition_length = 1, # relative animation time in seconds (default: 1)
+                      state_length = 2);     # relative pause time in seconds (default: 1)
 
      print(plot5);
   

@@ -53,5 +53,6 @@
          x="Month");   # set x-axis label manually
   plot(plot1c);
   
-  # Should we talk about the warning messages when plotting?=
+  # Bring up the lubridate package here.
+  # Talk about the warning messages when plotting, emphasize that data should be properly formatted.
 }

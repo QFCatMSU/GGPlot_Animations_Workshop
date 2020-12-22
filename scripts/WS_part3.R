@@ -48,8 +48,24 @@
          color="--Year--"); # if you don't have this, the label will be factor(year)
   plot(plot3b);
   
-  # The third mapped variable can also map linetype -- also moved the legend
+  #Using default colors may be problematic; here, we set the colors manually
   plot3c = ggplot(data=abundanceData[apr_to_sept,])+
+    geom_line(mapping=aes(x=month, y=zooplankton, color=factor(year)),
+              size=1.5,
+              linetype=1) +
+    scale_color_manual(values=c("2008"="blue","2009"="purple","2010"="red","2011"="orange")) +
+    theme_bw() +
+    scale_x_continuous(breaks=1:12, 
+                       labels= month.abb) +
+    labs(title="Zooplankton abundance",
+         subtitle="2008-2011",
+         x="Month by Number",
+         y="Number of Zooplankton",
+         color="--Year--"); # if you don't have this, the label will be factor(year)
+  plot(plot3c);
+  
+  # The third mapped variable can also map linetype -- also moved the legend
+  plot3d = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=zooplankton, linetype=factor(year)),
               size=1.25) +
     theme_minimal() +
@@ -60,6 +76,6 @@
          x="Month by Number",
          y="Number of Zooplankton",
          linetype="Year");
-  plot(plot3c);
+  plot(plot3d);
   
 }
