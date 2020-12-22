@@ -37,8 +37,8 @@
                           group=year, color="White Bass")) +
     scale_y_continuous(name = "Zooplankton abundance",             # first axis
                        sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
-                                           name="White Bass abundance")) +
-    labs(title="Zooplankton vs. White bass abundance {closest_state}",
+                                           name="Larval white bass abundance")) +
+    labs(title="Zooplankton vs. Larval white bass abundance {closest_state}",
          subtitle="2008-2011",
          x="Month",
          y="Number of Zooplankton",
