@@ -95,4 +95,4 @@
          color="Species") +
     scale_color_manual(values=c("White Bass"="blue","Zooplankton"="orange"));
   plot(plot4d);
-}
+} 
