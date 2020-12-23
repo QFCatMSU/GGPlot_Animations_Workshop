@@ -23,7 +23,7 @@
               size=1.5,
               linetype="solid") +   # linetypes: http://www.sthda.com/english/wiki/ggplot2-line-types-how-to-change-line-types-of-a-graph-in-r-software
     theme_bw() +
-    scale_x_continuous(breaks=1:12, 
+    scale_x_continuous(breaks=1:12, # Different way to display months
                        labels= month.abb) +
     labs(title="Zooplankton abundance",
          subtitle="2008",

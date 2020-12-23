@@ -16,14 +16,14 @@
   # - overriding legend colors
   # - faceting
   # - change number notation
-  # - secondary axis (advanced)
+  # - secondary axis
   
   # Create a separate plot for each year (faceting)
   plot4 = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=zooplankton),
               size=1.25) +
     facet_wrap(facets = ~year) +   # breaks the plots up by year
-    theme_minimal() +
+    theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
     labs(title="Zooplankton Abundance",
@@ -41,10 +41,10 @@
     geom_line(mapping=aes(x=month, y=whitebass, color="White Bass"), 
               size= 1.25) +
     facet_wrap(facets = ~year) +
-    theme_minimal() +
+    theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton vs. White bass abundance",
+    labs(title="Zooplankton vs. Larval white bass abundance",
          subtitle="2008-2011",
          x="Month",
          y="Number of Zooplankton",
@@ -65,8 +65,8 @@
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
     scale_y_continuous(labels = scales::comma) +  # change to regular notation
-    theme_minimal() +
-    labs(title="Zooplankton vs. White bass abundance",
+    theme_bw() +
+    labs(title="Zooplankton vs. Larval white bass abundance",
          subtitle="2008-2011",
          x="Month",
          y="Number of Zooplankton",
@@ -74,7 +74,7 @@
     scale_color_manual(values=c("White Bass"="blue","Zooplankton"="orange"));  # change line colors
   plot(plot4c);
   
-  # add secondary axis (***advanced***)
+  # add secondary axis
   plot4d = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=zooplankton, color="Zooplankton"),
               size=1.25) +
@@ -83,12 +83,12 @@
     scale_y_continuous(name = "Zooplankton abundance",              # first axis
                        labels = scales::comma, # change to regular notation
                        sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
-                                           name="White Bass abundance")) +
+                                           name="Larval white bass abundance")) +
     facet_wrap(facets = ~year) +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    theme_minimal() +
-    labs(title="Zooplankton vs. White bass abundance",
+    theme_bw() +
+    labs(title="Zooplankton vs. Larval white bass abundance",
          subtitle="2008-2011",
          x="Month",
          y="Number of Zooplankton",
