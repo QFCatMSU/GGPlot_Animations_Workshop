@@ -53,15 +53,15 @@
      print(plot5);
   
   # tweak size of gif explain more bout tweaks in mp4
-  # 
-  # # anim_save() also take parameters from animate()
-  # anim_save(filename="media/abundance.gif",
-  #           animation = plotAnim);
-  # 
-  # # anim_save() -- saving as an mp4 video
-  # anim_save(filename = "media/abundance.mp4",
-  #           animation = plotAnim,
-  #           renderer = av_renderer(),
-  #           nframes = 60,       # number of frames in animation
-  #           fps = 3);           # frames per second
+
+  # anim_save() also take parameters from animate()
+  anim_save(filename="media/abundance.gif",
+            animation = plot5);
+
+  # anim_save() -- saving as an mp4 video
+  anim_save(filename = "media/abundance.mp4",
+            animation = plot5,
+            renderer = av_renderer(),
+            nframes = 60,       # number of frames in animation
+            fps = 3);           # frames per second
 }
