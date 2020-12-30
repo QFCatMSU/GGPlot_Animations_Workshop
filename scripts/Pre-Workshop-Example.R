@@ -1,13 +1,20 @@
 {
   rm(list=ls());                         # clear Console Window
   options(show.error.locations = TRUE);  # show line numbers on error
-  library(package=ggplot2);   
- # library(package=gridExtra);           
+
+  # make sure to restart RStudio if this is the first time installing these packages
+  library(package=ggplot2);
+  library(package=gganimate);
+  library(package=av);          # to create mp4 videos
+  library(package=htmltools);
+  library(package=gifski);      # to create animated gifs
+  library(package=transformr);  # tweens the animations (does not do anything with lines...)
+  
+  
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
                          stringsAsFactors = FALSE);
 
-  library(package=gganimate);
-  library(package=av);        # to create mp4 videos
+
 
   # create a numeric precipitation column
   precipNum = weatherData$precip;
@@ -25,7 +32,7 @@
     theme_bw() +
     transition_time(time = precipNum,
                     range = NULL);   # range can be changed to limit the "time"
-#  print(plot1); 
+  print(plot1); 
   
   # Notes:
   # - for continuous variables, it is much harder to control transition times
