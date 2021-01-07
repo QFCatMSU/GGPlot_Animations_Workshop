@@ -1,5 +1,3 @@
-# I added parameter names to all functions
-# How important is it to show a legend?  An alternative is to add the legend text to the plot.
 
 {  
   rm(list=ls());
@@ -22,22 +20,22 @@
   coeff_WB_Zoo = max(abundanceData$whitebass, na.rm=TRUE) /  
     max(abundanceData$zooplankton, na.rm=TRUE);
   
-  # Part 5 Teaching goals ####
+  # Part 5 Learning goals ####
   # - animations
   # - saving as GIF
   # - saving as MP4
   # - Locating files in RStudio Projects
   
   # To animate lines, we need to add "group" to the mapping
-  # 
+  #
   plot5 = ggplot(data=abundanceData[apr_to_sept,])+
-    geom_line(mapping=aes(x=month, y=zooplankton, 
+    geom_line(mapping=aes(x=month, y=whitebass, 
+                          group=year, color="White bass")) +
+    geom_line(mapping=aes(x=month, y=zooplankton*coeff_WB_Zoo, 
                           group=year, color="Zooplankton")) +
-    geom_line(mapping=aes(x=month, y=whitebass/coeff_WB_Zoo, 
-                          group=year, color="White Bass")) +
-    scale_y_continuous(name = "Zooplankton abundance",             # first axis
-                       sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
-                                           name="Larval white bass abundance")) +
+    scale_y_continuous(name = "Larval white bass abundance",             # first axis
+                       sec.axis = sec_axis(trans= ~./coeff_WB_Zoo,  # second axis
+                                           name="Zooplankton abundance")) +
     labs(title="Zooplankton vs. Larval white bass abundance {closest_state}",
          subtitle="2008-2011",
          x="Month",
@@ -52,7 +50,7 @@
 
      print(plot5);
   
-  # tweak size of gif explain more bout tweaks in mp4
+  # tweak size of gif explain more about tweaks in mp4
 
   # anim_save() also take parameters from animate()
   anim_save(filename="media/abundance.gif",
