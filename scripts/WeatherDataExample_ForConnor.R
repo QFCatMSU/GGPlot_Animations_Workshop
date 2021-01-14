@@ -30,11 +30,32 @@
          x = 'Average Temp', 
          y = 'Humidity') +
     theme_bw() +
-    #scale_x_continuous(name='Average Temp') +
-    #scale_y_continuous(name='Humidity') +
-    transition_time(time = X,
+    scale_x_continuous() +
+    scale_y_continuous() +
+    transition_time(time = precip,
                     range = NULL);   # range can be changed to limit the "time"
   print(plot1); 
+  
+  
+  ######Maguffee Code Starts Here
+  seasons<-ordered(weatherData$season, levels=c("Spring","Summer","Fall","Winter"))
+  
+  plot2 = ggplot(data=weatherData) +
+    geom_point(mapping=aes(x=avgTemp, y=relHum)) +
+    labs(title = paste('Humidity (y) vs. Temperature (x) by Season (animation)'),
+         subtitle = 'Season: {closest_state}',
+         x = 'Average Temp',
+         y = 'Humidity') +
+    theme_bw() +
+    transition_states(states=seasons,
+                      transition_length = 2,
+                      state_length = 4)
+    
+  print(plot2)
+  ################Ends Here
+  
+  
+  
   
   # Notes:
   # - for continuous variables, it is much harder to control transition times
