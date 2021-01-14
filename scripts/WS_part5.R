@@ -27,7 +27,7 @@
   # - Locating files in RStudio Projects
   
   # To animate lines, we need to add "group" to the mapping
-  #
+  
   plot5 = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=whitebass, 
                           group=year, color="White bass")) +
@@ -46,16 +46,16 @@
                        labels= month.abb) +
     transition_states(states = year,         # map animation to the year
                       transition_length = 1, # relative animation time in seconds (default: 1)
-                      state_length = 2);     # relative pause time in seconds (default: 1)
-
-     print(plot5);
+                      state_length = 2);# relative pause time in seconds (default: 1)
+  
+  print(plot5);
   
   # tweak size of gif explain more about tweaks in mp4
-
+  
   # anim_save() also take parameters from animate()
   anim_save(filename="media/abundance.gif",
             animation = plot5);
-
+  
   # anim_save() -- saving as an mp4 video
   anim_save(filename = "media/abundance.mp4",
             animation = plot5,
