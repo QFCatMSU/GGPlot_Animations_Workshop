@@ -2,20 +2,18 @@
   rm(list=ls());                         # clear Console Window
   options(show.error.locations = TRUE);  # show line numbers on error
 
-  # make sure to restart RStudio if this is the first time installing these packages
   library(package=ggplot2);
   library(package=gganimate);
-  library(package=av);          # to create mp4 videos
+  library(package=av);          
   library(package=htmltools);
-  library(package=gifski);      # to create animated gifs
-  library(package=transformr);  # tweens the animations (does not do anything with lines...)
+  library(package=gifski);      
+  library(package=transformr);  
   
   # PART 5 ACTIVITY -- ANIMATION
   
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
                          stringsAsFactors = FALSE)[,-1];
 
-  
   plot1 = ggplot(data=weatherData) +
     geom_point(mapping=aes(x=avgTemp, y=relHum)) +
     labs(title = paste('Humidity (y) vs. Temperature (x) by Precipitation (animation)'),
@@ -27,13 +25,13 @@
     scale_y_continuous() +
     transition_time(time = precipNum,
                     range = NULL);   # range can be changed to limit the "time"
-  print(plot1); 
+  animate(plot1, nframes=200);
   
   #
   #
   
   plot2 = ggplot(data=weatherData) +
-    geom_point(mapping=aes(x=avgTemp, y=relHum, color=seasons))+
+    geom_point(mapping=aes(x=avgTemp, y=relHum, color=season))+
     labs(title = paste('Humidity (y) vs. Temperature (x) by Season (animation)'),
          subtitle = 'Season: {closest_state}',
          x = 'Average Temp',
@@ -41,11 +39,36 @@
     theme_bw() +
     scale_x_continuous() +
     scale_y_continuous() +
-    transition_states(states=seasons,
-                      transition_length = 2,
-                      state_length = 4)
+    transition_states(states=season,
+                      transition_length = 1,
+                      state_length = 2)
     
-  print(plot2)
+  animate(plot2, nframes=200);
+  
+  #
+  #
+  
+  weatherData$month <- factor(weatherData$month, levels=month.name)
+  plot3 = ggplot(data=weatherData) +
+    geom_point(size=2, mapping=aes(x=avgTemp, y=precipNum, color=month, group=1L))+
+    labs(title = paste('Precipitation (y) vs. Temperature (x) by month (animation)'),
+         subtitle = 'Month: {closest_state}',
+         x = 'Average Temp',
+         y = 'Precipitation',
+         color = 'Month') +
+    theme_bw() +
+    scale_x_continuous() +
+    scale_y_continuous() +
+    scale_color_viridis_d()+
+    transition_states(states=month,
+                      transition_length = 1,
+                      state_length = 2) +
+    shadow_trail(distance=0.01)
+  
+  animate(plot3, nframes=200);
+  
+  #
+  #
   
   # anim_save() -- saving as a gif
   anim_save(filename = "anim_example3.gif",

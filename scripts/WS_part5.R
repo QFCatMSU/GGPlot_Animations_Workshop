@@ -48,7 +48,7 @@
                       transition_length = 1, # relative animation time in seconds (default: 1)
                       state_length = 2);# relative pause time in seconds (default: 1)
   
-  print(plot5);
+  animate(plot5, nframes=200);
   
   # tweak size of gif explain more about tweaks in mp4
   
