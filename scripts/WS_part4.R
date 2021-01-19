@@ -11,12 +11,11 @@
                         abundanceData$month <= 9);    
   
   # Part 4 Teaching goals ####
-  # - mapping multiple plot (color maps to legend)
-  # - scaling math 
-  # - overriding legend colors
-  # - faceting
-  # - change number notation
-  # - secondary axis
+  # - Mapping multiple plots (faceting)
+  # - Plotting additional data (two lines)
+  # - Scaling the data
+  # - Changing y-axis number notation
+  # - Adding a secondary axis
   
   # Create a separate plot for each year (faceting)
   plot4 = ggplot(data=abundanceData[apr_to_sept,])+
@@ -52,7 +51,7 @@
   plot(plot4b);
   
   # there are NA values in the data frame that we need to deal with
-  coeff_WB_Zoo = max(abundanceData$whitebass, na.rm=TRUE) /       # do not use T!
+  coeff_WB_Zoo = max(abundanceData$whitebass, na.rm=TRUE) /
                  max(abundanceData$zooplankton, na.rm=TRUE);
   
   # adjust scale and color, change 

@@ -9,10 +9,10 @@
  
   
   # Part 3 Teaching goals ####
-  # - mapping a 3rd variable (year to color) 
-  # - continuous vs discrete mapping
-  # - creating legend (done by 3rd variable mapping)
-  # - labeling and moving legends
+  # - Mapping a 3rd variable (year to color) 
+  # - Continuous vs discrete mapping
+  # - Creating legend (done by 3rd variable mapping)
+  # - Labeling and moving legends
   
   apr_to_sept = which(abundanceData$month >= 4 &    
                       abundanceData$month <= 9);    
