@@ -82,7 +82,8 @@
     scale_y_continuous(name = "Zooplankton abundance",              # first axis
                        labels = scales::comma, # change to regular notation
                        sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
-                                           name="Larval white bass abundance")) +
+                                           name="Larval white bass abundance",
+                                           labels = scales::comma)) +
     facet_wrap(facets = ~year) +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
