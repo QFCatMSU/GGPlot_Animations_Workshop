@@ -25,8 +25,8 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton Abundance",
-         subtitle="2008-2011",
+    labs(title="Plot 4",
+         subtitle="Zooplankton Abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton");
   plot(plot4);
@@ -43,8 +43,8 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton vs. Larval white bass abundance",
-         subtitle="2008-2011",
+    labs(title="Plot 4b",
+         subtitle="Zooplankton vs. Larval white bass abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton",
          color="Species");    # title of the legend
@@ -65,8 +65,8 @@
                        labels= month.abb) +
     scale_y_continuous(labels = scales::comma) +  # change to regular notation
     theme_bw() +
-    labs(title="Zooplankton vs. Larval white bass abundance",
-         subtitle="2008-2011",
+    labs(title="Plot 4c",
+         subtitle="Zooplankton vs. Larval white bass abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton",
          color="Species") +
@@ -87,8 +87,8 @@
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
     theme_bw() +
-    labs(title="Zooplankton vs. Larval white bass abundance",
-         subtitle="2008-2011",
+    labs(title="Plot 4d",
+         subtitle="Zooplankton vs. Larval white bass abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton",
          color="Species") +

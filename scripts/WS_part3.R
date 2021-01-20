@@ -26,9 +26,9 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton abundance",
-         subtitle="2008-2011",
-         x="Month by Number",
+    labs(title="Plot 3",
+         subtitle="Zooplankton Abundance 2008 - 2011",
+         x="Month",
          y="Number of Zooplankton");
   plot(plot3);
   
@@ -41,9 +41,9 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton abundance",
-         subtitle="2008-2011",
-         x="Month by Number",
+    labs(title="Plot 3b",
+         subtitle="Zooplankton Abundance 2008 - 2011",
+         x="Month",
          y="Number of Zooplankton",
          color="--Year--"); # if you don't have this, the label will be factor(year)
   plot(plot3b);
@@ -57,9 +57,9 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton abundance",
-         subtitle="2008-2011",
-         x="Month by Number",
+    labs(title="Plot 3c",
+         subtitle="Zooplankton Abundance 2008 - 2011",
+         x="Month",
          y="Number of Zooplankton",
          color="--Year--"); # if you don't have this, the label will be factor(year)
   plot(plot3c);
@@ -71,9 +71,11 @@
     theme_minimal() +
     theme(legend.position = c(.1,.8),          # change legend placement 
           legend.key.width = unit(3,"cm")) +   # change legend width
-    labs(title="Zooplankton abundance",
-         subtitle="2008-2011",
-         x="Month by Number",
+    scale_x_continuous(breaks=1:12, 
+                       labels= month.abb) +
+    labs(title="Plot 3d",
+         subtitle="Zooplankton Abundance 2008 - 2011",
+         x="Month",
          y="Number of Zooplankton",
          linetype="Year");
   plot(plot3d);
