@@ -34,7 +34,7 @@
                       transition_length = 1,
                       state_length = 1,
                       wrap = TRUE)
-  animate(plot5a, nframes = 60 , fps = 3 );
+  animate(plot5a, nframes = 60 , fps = 10 );
   
   # 1. Change the plot to animate by month
   # 2. Change the plot to animate by season

@@ -24,11 +24,10 @@
   # - animations
   # - saving as GIF
   # - saving as MP4
-  # - Locating files in RStudio Projects
-  
+
   # To animate lines, we need to add "group" to the mapping
   
-  plot5 = ggplot(data=abundanceData[apr_to_sept,], mapping=aes(group=year))+
+  plot5 = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x = month, y = whitesucker, 
                           group=year, color="White Sucker")) +
     geom_line(mapping=aes(x = month, y = zooplankton * coeff_WS_Zoo, 
@@ -45,14 +44,14 @@
     scale_x_continuous(breaks = 1:12, 
                        labels = month.abb)
   
-  plot5 = plot5 + transition_states(states = year,         # map animation to the year
+  plot5.1 = plot5 + transition_states(states = year,         # map animation to the year
                     transition_length = 1,                 # relative animation time in seconds (default: 1)
                     state_length = 1,                      # relative length of the pause between states
                     wrap = TRUE)
     
-  # plot5 = plot5 + transition_reveal(along = month) +       # map animation to the month, revealing along that axis
-  #                 facet_wrap( ~ year);                     # and if you like, facet your plot by year
-  
+  plot5.2 = plot5 + transition_reveal(along = month) +       # map animation to the month, revealing along that axis
+                  facet_wrap( ~ year);                     # and if you like, facet your plot by year
+
   animate(plot5, nframes=60);
   
   #
