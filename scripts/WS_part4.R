@@ -11,12 +11,11 @@
                         abundanceData$month <= 9);    
   
   # Part 4 Teaching goals ####
-  # - mapping multiple plot (color maps to legend)
-  # - scaling math 
-  # - overriding legend colors
-  # - faceting
-  # - change number notation
-  # - secondary axis
+  # - Mapping multiple plots (faceting)
+  # - Plotting additional data (two lines)
+  # - Scaling the data
+  # - Changing y-axis number notation
+  # - Adding a secondary axis
   
   # Create a separate plot for each year (faceting)
   plot4 = ggplot(data=abundanceData[apr_to_sept,])+
@@ -26,8 +25,8 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton Abundance",
-         subtitle="2008-2011",
+    labs(title="Plot 4",
+         subtitle="Zooplankton Abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton");
   plot(plot4);
@@ -44,15 +43,15 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton vs. Larval white bass abundance",
-         subtitle="2008-2011",
+    labs(title="Plot 4b",
+         subtitle="Zooplankton vs. Larval white bass abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton",
          color="Species");    # title of the legend
   plot(plot4b);
   
   # there are NA values in the data frame that we need to deal with
-  coeff_WB_Zoo = max(abundanceData$whitebass, na.rm=TRUE) /       # do not use T!
+  coeff_WB_Zoo = max(abundanceData$whitebass, na.rm=TRUE) /
                  max(abundanceData$zooplankton, na.rm=TRUE);
   
   # adjust scale and color, change 
@@ -66,8 +65,8 @@
                        labels= month.abb) +
     scale_y_continuous(labels = scales::comma) +  # change to regular notation
     theme_bw() +
-    labs(title="Zooplankton vs. Larval white bass abundance",
-         subtitle="2008-2011",
+    labs(title="Plot 4c",
+         subtitle="Zooplankton vs. Larval white bass abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton",
          color="Species") +
@@ -83,13 +82,14 @@
     scale_y_continuous(name = "Zooplankton abundance",              # first axis
                        labels = scales::comma, # change to regular notation
                        sec.axis = sec_axis(trans= ~.*coeff_WB_Zoo,  # second axis
-                                           name="Larval white bass abundance")) +
+                                           name="Larval white bass abundance",
+                                           labels = scales::comma)) +
     facet_wrap(facets = ~year) +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
     theme_bw() +
-    labs(title="Zooplankton vs. Larval white bass abundance",
-         subtitle="2008-2011",
+    labs(title="Plot 4d",
+         subtitle="Zooplankton vs. Larval white bass abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton",
          color="Species") +
