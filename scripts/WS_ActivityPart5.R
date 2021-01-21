@@ -22,7 +22,7 @@
                                 levels=c("Winter","Spring","Summer","Fall"))
   
   plot5a = ggplot(data=weatherData) +
-    geom_point(mapping=aes(x=avgTemp, y=relHum, group = 1L , color = season ))+
+    geom_point(mapping=aes(x=avgTemp, y=relHum, group = , color = ))+
     labs(title = paste('Humidity (y) vs. Temperature (x) by Season (animation)'),
          subtitle = 'Season: {closest_state}',
          x = 'Average Temp',
@@ -30,11 +30,11 @@
     theme_bw() +
     scale_x_continuous() +
     scale_y_continuous() +
-    transition_states(states = season,
+    transition_states(states = day,
                       transition_length = 1,
                       state_length = 1,
                       wrap = TRUE)
-  animate(plot5a, nframes = 60 , fps = 3 );
+  animate(plot5a, nframes = , fps = );
   
   # 1. Change the plot to animate by month
   # 2. Change the plot to animate by season

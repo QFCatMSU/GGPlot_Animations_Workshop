@@ -14,7 +14,7 @@
   apr_to_sept = which(abundanceData$month >= 4 &    
                         abundanceData$month <= 9);   
   
-  coeff_WS_Zoo = max(abundanceData$whitesucker, na.rm=TRUE) /  # do not use T!
+  coeff_WS_Zoo = max(abundanceData$whitesucker, na.rm=TRUE) /
     max(abundanceData$zooplankton, na.rm=TRUE);
   
   coeff_WB_Zoo = max(abundanceData$whitebass, na.rm=TRUE) /  
@@ -28,29 +28,36 @@
   
   # To animate lines, we need to add "group" to the mapping
   
-  plot5 = ggplot(data=abundanceData[apr_to_sept,])+
-    geom_line(mapping=aes(x=month, y=whitebass, 
-                          group=year, color="White bass")) +
-    geom_line(mapping=aes(x=month, y=zooplankton*coeff_WB_Zoo, 
+  plot5 = ggplot(data=abundanceData[apr_to_sept,], mapping=aes(group=year))+
+    geom_line(mapping=aes(x = month, y = whitesucker, 
+                          group=year, color="White Sucker")) +
+    geom_line(mapping=aes(x = month, y = zooplankton * coeff_WS_Zoo, 
                           group=year, color="Zooplankton")) +
-    scale_y_continuous(name = "Larval white bass abundance",             # first axis
-                       sec.axis = sec_axis(trans= ~./coeff_WB_Zoo,  # second axis
-                                           name="Zooplankton abundance")) +
-    labs(title="Zooplankton vs. Larval white bass abundance {closest_state}",
-         subtitle="2008-2011",
+    scale_y_continuous(name = "Larval white sucker abundance",             # first axis
+                       sec.axis = sec_axis(trans = ~./coeff_WS_Zoo,  # second axis
+                                           name ="Zooplankton abundance")) +
+    labs(title = "Plot 5",
+         subtitle = "Zooplankton vs. Larval white sucker abundance",
          x="Month",
          y="Number of Zooplankton",
          color="Species") +
     theme_bw() +
-    scale_x_continuous(breaks=1:12, 
-                       labels= month.abb) +
-    transition_states(states = year,         # map animation to the year
-                      transition_length = 1, # relative animation time in seconds (default: 1)
-                      state_length = 2);# relative pause time in seconds (default: 1)
+    scale_x_continuous(breaks = 1:12, 
+                       labels = month.abb)
   
-  animate(plot5, nframes=200);
+  plot5 = plot5 + transition_states(states = year,         # map animation to the year
+                    transition_length = 1,                 # relative animation time in seconds (default: 1)
+                    state_length = 1,                      # relative length of the pause between states
+                    wrap = TRUE)
+    
+  # plot5 = plot5 + transition_reveal(along = month) +       # map animation to the month, revealing along that axis
+  #                 facet_wrap( ~ year);                     # and if you like, facet your plot by year
   
-  # tweak size of gif explain more about tweaks in mp4
+  animate(plot5, nframes=60);
+  
+  #
+  #
+  
   
   # anim_save() also take parameters from animate()
   anim_save(filename="media/abundance.gif",
