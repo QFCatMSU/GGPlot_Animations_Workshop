@@ -3,7 +3,7 @@
   options(show.error.locations=TRUE);
   library(package=ggplot2);
   
-  abundanceData = read.csv(file="data/final-Charlie.csv", sep=",",
+  abundanceData = read.csv(file="data/abundance.csv", sep=",",
                            header=TRUE, na.strings = c("", NA),
                            stringsAsFactors = FALSE);
   ############
