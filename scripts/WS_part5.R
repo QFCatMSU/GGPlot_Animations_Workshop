@@ -40,7 +40,9 @@
                           group = year, color="Zooplankton")) +
     scale_y_continuous(name = "Larval white sucker abundance",          # first axis
                        sec.axis = sec_axis(trans = ~./coeff_WS_Zoo,     # second axis
-                                           name = "Zooplankton abundance")) 
+                                           name = "Zooplankton abundance",
+                                           labels = scales::comma),
+                       labels = scales::comma);
   #
   #
   # Now we have a basic plot, lets add an animation component 
