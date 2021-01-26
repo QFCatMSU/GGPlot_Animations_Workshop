@@ -46,7 +46,9 @@
     theme_bw() +
     scale_x_continuous(breaks = 1:12, 
                        labels = month.abb);
-  
+  #
+  #
+  # Now we have a basic plot, lets add an animation component 
   plot5a.1 = plot5a + transition_states(states = year,         # map animation to the year
                                         transition_length = 1, # relative animation time in seconds (default: 1)
                                         state_length = 1,      # relative length of the pause between states
