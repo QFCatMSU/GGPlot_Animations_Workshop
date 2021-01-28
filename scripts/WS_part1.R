@@ -11,7 +11,7 @@
   # - using month abbreviations (factors)
   
   # the parameters are not necessary needed but I think it is important to know about them
-  abundanceData = read.csv(file="data/final-Charlie.csv", sep=",",
+  abundanceData = read.csv(file="data/abundance.csv", sep=",",
                            header=TRUE, na.strings = c("", NA),
                            stringsAsFactors = FALSE);  # mention R v3 vs 4
   
@@ -21,8 +21,8 @@
                color="blue",   # may color names work here: https://stat.columbia.edu/~tzheng/files/Rcolor.pdf
                size=2,         # multiplier (x2)
                shape=1) +      # can use values 1-25: http://www.sthda.com/english/wiki/ggplot2-point-shapes
-    labs(title="Zooplankton abundance",
-         subtitle="2008-2011");
+    labs(title="plot 1",
+         subtitle="Zooplankton abundance 2008-2011");
   plot(plot1);
   
   # change the month number to month abbreviation 
@@ -32,8 +32,8 @@
                color="blue",
                size=2,
                shape=1) +  # can use values 1-6
-    labs(title="Zooplankton abundance",
-         subtitle="2008-2011");
+    labs(title="plot 1b",
+         subtitle="Zooplankton abundance 2008-2011");
   plot(plot1b);
   # Two problems with the above plot:
   # 1) The months are given alphabetically (default ordering for strings in R)
@@ -48,8 +48,8 @@
                color="blue",
                size=2,
                shape=1) +   
-    labs(title="Zooplankton abundance",
-         subtitle="2008-2011",
+    labs(title="plot 1c",
+         subtitle="Zooplankton abundance 2008-2011",
          x="Month");   # set x-axis label manually
   plot(plot1c);
   
