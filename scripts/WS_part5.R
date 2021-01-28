@@ -28,7 +28,7 @@
   coeff_WB_Zoo = max(abundanceData$whitebass, na.rm = TRUE) /  
     max(abundanceData$zooplankton, na.rm = TRUE);
   
-  month = ordered(abundanceData$month, levels = month.name[])
+  month = ordered(abundanceData$month, levels = month.abb[])
   
   #
   #

@@ -32,7 +32,7 @@
   # (7) Adjust the fps argument. What happens to your plot output?
   
   day = seq(1:nrow(weatherData))
-  month = ordered(weatherData$month, levels=month.name);    # First, make sure your grouping factors are in the correct order
+  month = ordered(weatherData$month, levels=month.abb[]);    # First, make sure your grouping factors are in the correct order
   season = ordered(weatherData$season, levels=c("Winter","Spring","Summer","Fall"));
   
   plot5c = ggplot(data=weatherData) +
