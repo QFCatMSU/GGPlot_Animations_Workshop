@@ -1,4 +1,4 @@
-{  
+{
   #PARTS 1 & 2 ACTIVITY -- MAPPING, SUBSETTING, THEMES, AND LABELING
   
   rm(list=ls());
@@ -25,19 +25,22 @@
   #
   # (6) Give your plot a title and subtitle
   
-  year2010_sub = which()
+  # subset data and color is used as a style change here -- it is not mapped to data
+  year2010_sub = which(abundanceData$year == 2010 &
+                         abundanceData$month>=3 &  #3rd month is March
+                         abundanceData$month<=10); #10th month is October
   
   solution = ggplot(data=abundanceData[year2010_sub,])+
-    geom_line(mapping=aes(x=month, y=), #be sure to map the correct data set column to the y-axis
-              color=,
+    geom_line(mapping=aes(x=month, y=zooplankton), #be sure to map the correct column the y-axis
+              color="blue",
               size=2,
-              linetype=) +   # linetypes: http://www.sthda.com/english/wiki/ggplot2-line-types-how-to-change-line-types-of-a-graph-in-r-software
+              linetype="dashed") +   # linetypes: http://www.sthda.com/english/wiki/ggplot2-line-types-how-to-change-line-types-of-a-graph-in-r-software
     theme_classic() + #any theme of your choosing works here.
-    scale_x_continuous(breaks=1:12,
+    scale_x_continuous(breaks=1:12, # Different way to display months
                        labels= month.abb) +
-    labs(title="",#Use title and subtitle to label the plot correctly.
-         subtitle="", 
-         y="");
+    labs(title="zooplankton Abundance",#Use title and subtitle to label the plot correctly.
+         subtitle="2010 Mar - Oct", 
+         y="zooplankton");
   plot(solution);
   
 }

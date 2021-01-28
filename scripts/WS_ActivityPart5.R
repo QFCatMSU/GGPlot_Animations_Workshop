@@ -3,7 +3,6 @@
   
   rm(list=ls());                         # clear Console Window
   options(show.error.locations = TRUE);  # show line numbers on error
-  
   library(package=ggplot2);
   library(package=gganimate);
   library(package=av);          
@@ -11,17 +10,26 @@
   library(package=gifski);      
   library(package=transformr);  
   
-  # TASKS
-  # 1. Animate the plot by day
-  # 2. Change the plot to animate by month
-  # 3. Change the plot to animate by season
-  # 4. Change the plot so that the point size varies with precipitation
-  # 5. Change the plot so that the color varies with the transition state
-  # 6. Adjust the nframes argument. What happens to your plot output?
-  # 7. Adjust the fps argument. What happens to your plot output?
-  
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
                          stringsAsFactors = FALSE);
+  
+  #########
+  # TASKS #
+  #########
+  
+  # (1) Animate the plot by day
+  #
+  # (2) Change the plot to animate by month
+  #
+  # (3) Change the plot to animate by season
+  #
+  # (4) Change the plot so that the point size varies with precipitation
+  #
+  # (5) Change the plot so that the color varies with the transition state
+  #
+  # (6) Adjust the nframes argument. What happens to your plot output?
+  #
+  # (7) Adjust the fps argument. What happens to your plot output?
   
   day = seq(1:nrow(weatherData))
   month = ordered(weatherData$month, levels=month.name);    # First, make sure your grouping factors are in the correct order
