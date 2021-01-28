@@ -63,7 +63,7 @@
                       state_length = 1,      # relative length of the pause between states
                       wrap = TRUE);
   
-  animate(plot5a.1, nframes = 60, fps = 3);    
+  animate(plot5a.1, nframes = 20, fps = 5);    
   
   plot5a.2 = plot5a + transition_reveal(along = month) +
     labs(title = "Plot 5a.2",
@@ -77,17 +77,16 @@
     facet_wrap( ~ year);                          # and if you like, facet your plot by year
   
                     
-  animate(plot5a.2, nframes = 60, fps=3);  # Number of frames in animation                    
+  animate(plot5a.2, nframes = 100, fps=5);  # Number of frames in animation                    
   
   #
-  # Lets take a second...
+  # Lets take a minte and play around with the nframes and fps. What happens to the animation?
   
   #
   # Now let's try it with a slightly larger dataset, and a different plot type
   weatherData = read.csv(file = "data/LansingNOAA2016-3.csv", stringsAsFactors = FALSE);
   
   day = seq(1:nrow(weatherData));                          # Rename the column of rownumbers to refer to the "day"
-  month = ordered(weatherData$month, levels = month.abb[]);    # First, make sure your grouping factors are in the correct order
   season = ordered(weatherData$season, levels = c("Winter","Spring","Summer","Fall"));
   
   plot5b = ggplot(data = weatherData) +
@@ -105,7 +104,7 @@
   plot5b.1 = plot5b + transition_time(time = precipNum,      # We can transition by a continuous variable too
                                       range = NULL);         # Range can be changed to limit the "time"
   
-  animate(plot5b.1, nframes = 60); 
+  animate(plot5b.1, nframes = 100, fps=3); 
   
   # Saving our animated plots 
   # anim_save() can also take parameters from animate()
