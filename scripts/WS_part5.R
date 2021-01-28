@@ -47,7 +47,7 @@
   #
   # Now we have a basic plot, lets add an animation component 
   plot5a.1 = plot5a +
-    labs(title = "Plot 5a",
+    labs(title = "Plot 5a.1",
          subtitle = "Zooplankton vs. Larval white sucker abundance: {closest_state}",
          x = "Month",
          y = "Number of Zooplankton",
@@ -61,7 +61,7 @@
                       wrap = TRUE);
   
   plot5a.2 = plot5a + transition_reveal(along = month) +
-    labs(title = "Plot 5a",
+    labs(title = "Plot 5a.2",
          subtitle = "Zooplankton vs. Larval white sucker abundance ",
          x = "Month",
          y = "Number of Zooplankton",
@@ -71,8 +71,8 @@
                        labels = month.abb)+       # map animation to the month, revealing along that axis
     facet_wrap( ~ year);                                       # and if you like, facet your plot by year
   
-  print(animate(plot5a.1, nframes = 60));                      # Number of frames in animation 
-  print(animate(plot5a.2, nframes = 60));                     
+  animate(plot5a.1, nframes = 60);                      # Number of frames in animation 
+  animate(plot5a.2, nframes = 60);                     
   
   #
   #
@@ -80,7 +80,7 @@
   weatherData = read.csv(file = "data/LansingNOAA2016-3.csv", stringsAsFactors = FALSE);
   
   day = seq(1:nrow(weatherData));                          # Rename the column of rownumbers to refer to the "day"
-  month = ordered(weatherData$month, levels = month.name);    # First, make sure your grouping factors are in the correct order
+  month = ordered(weatherData$month, levels = month.abb[]);    # First, make sure your grouping factors are in the correct order
   season = ordered(weatherData$season, levels = c("Winter","Spring","Summer","Fall"));
   
   plot5b = ggplot(data = weatherData) +
@@ -93,12 +93,15 @@
     scale_x_continuous() +
     scale_y_continuous();
   
+  plot(plot5b)
+  
   plot5b.1 = plot5b + transition_time(time = precipNum,      # We can transition by a continuous variable too
                                       range = NULL);         # Range can be changed to limit the "time"
   
-  print(animate(plot5b.1, nframes = 60)); 
+  animate(plot5b.1, nframes = 60); 
   
-  # Saving our animated plots 
+ 
+   # Saving our animated plots 
   # anim_save() can also take parameters from animate()
   anim_save(filename = "media/abundance.gif",
             animation = plot5a.1);
