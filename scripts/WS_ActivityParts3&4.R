@@ -1,4 +1,6 @@
 {  
+  # PARTS 3 & 4 ACTIVITY -- FACETING, SCALING, AND SECONDARY AXES
+  
   rm(list=ls());
   options(show.error.locations=TRUE);
   library(package=ggplot2);
@@ -6,9 +8,10 @@
   abundanceData = read.csv(file="data/abundance.csv", sep=",",
                            header=TRUE, na.strings = c("", NA),
                            stringsAsFactors = FALSE);
-  ############
-  # Activity #
-  ############
+  
+  #########
+  # TASKS #
+  #########
   
   # This time, we’ll be using the larval white sucker data. 
   #
@@ -25,5 +28,35 @@
   #
   #   (5) Change the color of the lines and the theme of the plot as you see 
   #       fit, making sure to reflect this in the legend. 
+  
+  
+  # Subset the Data Set From April to September
+  apr_to_sept = which();
+  
+  # Create the scaling coefficient
+  WS_zoop_coeff = max() / 
+                  max() ;
+  
+  solution = ggplot(data=)+
+    geom_line(mapping=aes(x=month, y=, color=""), 
+              size=1.25) +
+    geom_line(mapping=aes(x=month, y=, color=""), 
+              size=1.25) +
+    facet_wrap(facets = ~year) +
+    theme_light() + #Change the theme
+    scale_x_continuous(breaks=1:12, 
+                       labels= month.abb) +
+    scale_y_continuous(name = "",              # first axis
+                       labels = scales::comma,
+                       sec.axis = sec_axis(trans= ~.*,  # second axis
+                                           labels = scales::comma,
+                                           name="")) +
+    scale_color_manual(values=c()) + #Change the line colors
+    labs(title="Zooplankton vs. Larval White Sucker Abundance",
+         subtitle="2008-2011",
+         x="Month",
+         y="Number of Zooplankton",
+         color="Species");
+  plot(solution);
   
 }

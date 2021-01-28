@@ -1,4 +1,6 @@
 {  
+  # PARTS 3 & 4 ACTIVITY -- FACETING, SCALING, AND SECONDARY AXES
+  
   rm(list=ls());
   options(show.error.locations=TRUE);
   library(package=ggplot2);
@@ -6,9 +8,10 @@
   abundanceData = read.csv(file="data/abundance.csv", sep=",",
                            header=TRUE, na.strings = c("", NA),
                            stringsAsFactors = FALSE);
-  ############
-  # Activity #
-  ############
+  
+  #########
+  # TASKS #
+  #########
   
   # This time, we’ll be using the larval white sucker data. 
   #
