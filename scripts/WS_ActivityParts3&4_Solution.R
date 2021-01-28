@@ -1,6 +1,4 @@
 {  
-  #PARTS 3 & 4 ACTIVITY -- FACETING, SCALING, AND SECONDARY AXES
-  
   rm(list=ls());
   options(show.error.locations=TRUE);
   library(package=ggplot2);
@@ -8,10 +6,9 @@
   abundanceData = read.csv(file="data/abundance.csv", sep=",",
                            header=TRUE, na.strings = c("", NA),
                            stringsAsFactors = FALSE);
-  
-  #########
-  # TASKS #
-  #########
+  ############
+  # Activity #
+  ############
   
   # This time, we’ll be using the larval white sucker data. 
   #
@@ -42,7 +39,7 @@
   WS_zoop_coeff = max(abundanceData$whitesucker, na.rm=TRUE) /  
                   max(abundanceData$zooplankton, na.rm=TRUE);
   
-  solution = ggplot(data=abundanceData[apr_to_sept,])+
+  plot4 = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=zooplankton, color="Zooplankton"), #Zooplankton
               size=1.25) +
     geom_line(mapping=aes(x=month, y=whitesucker/WS_zoop_coeff, color="White Sucker"), #White Sucker
@@ -52,9 +49,7 @@
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
     scale_y_continuous(name = "Zooplankton Abundance",              # first axis
-                       labels = scales::comma,
                        sec.axis = sec_axis(trans= ~.*WS_zoop_coeff,  # second axis
-                                           labels= scales::comma,
                                            name="Larval White Sucker Abundance")) +
     scale_color_manual(values=c("White Sucker"="Blue","Zooplankton"="Orange")) + #Change the line colors
     labs(title="Zooplankton vs. Larval White Sucker Abundance",
@@ -62,6 +57,6 @@
          x="Month",
          y="Number of Zooplankton",
          color="Species");
-  plot(solution);
+  plot(plot4);
   
 }

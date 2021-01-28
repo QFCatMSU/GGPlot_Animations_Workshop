@@ -3,6 +3,7 @@
   
   rm(list=ls());                         # clear Console Window
   options(show.error.locations = TRUE);  # show line numbers on error
+  
   library(package=ggplot2);
   library(package=gganimate);
   library(package=av);          
@@ -10,9 +11,19 @@
   library(package=gifski);      
   library(package=transformr);  
   
+  # TASKS
+  # 1. Animate the plot by day
+  # 2. Change the plot to animate by month
+  # 3. Change the plot to animate by season
+  # 4. Change the plot so that the point size varies with precipitation
+  # 5. Change the plot so that the color varies with the transition state
+  # 6. Adjust the nframes argument. What happens to your plot output?
+  # 7. Adjust the fps argument. What happens to your plot output?
+  
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
                          stringsAsFactors = FALSE);
   
+<<<<<<< HEAD
   #########
   # TASKS #
   #########
@@ -34,6 +45,13 @@
   day = seq(1:nrow(weatherData))
   month = ordered(weatherData$month, levels=month.abb[]);    # First, make sure your grouping factors are in the correct order
   season = ordered(weatherData$season, levels=c("Winter","Spring","Summer","Fall"));
+=======
+  colnames(weatherData)[1] = "day";                           # Rename the column of rownumbers to refer to the "day"
+  weatherData$month = ordered(weatherData$month,              # First, make sure your grouping factors are in the correct order
+                              levels=month.name);
+  weatherData$season = ordered(weatherData$season, 
+                               levels=c("Winter","Spring","Summer","Fall"));
+>>>>>>> 3484fa906c2acc18e12b82436a54d63104c1efdd
   
   plot5c = ggplot(data=weatherData) +
     geom_point(mapping=aes(x=avgTemp, y=relHum, group = , color = ))+
@@ -41,7 +59,7 @@
          subtitle = 'Season: {closest_state}',
          x = 'Average Temp',
          y = 'Humidity') +
-    theme_bw()+
+    theme_bw() +
     scale_x_continuous() +
     scale_y_continuous();
   

@@ -18,18 +18,18 @@
   # - Adding a secondary axis
   
   # Create a separate plot for each year (faceting)
-  plot4a = ggplot(data=abundanceData[apr_to_sept,])+
+  plot4 = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=zooplankton),
               size=1.25) +
     facet_wrap(facets = ~year) +   # breaks the plots up by year
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Plot 4a",
+    labs(title="Plot 4",
          subtitle="Zooplankton Abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton");
-  plot(plot4a);
+  plot(plot4);
   
   # Put two lines on each plot
   # color here "maps" the line to the legend under the term in quotes (this is awkward!)
@@ -47,8 +47,7 @@
          subtitle="Zooplankton vs. Larval white bass abundance 2008 - 2011",
          x="Month",
          y="Number of Zooplankton",
-         color="Species") +    # title of the legend
-    scale_color_manual(values=c("White Bass"="blue","Zooplankton"="orange"));  # change line colors
+         color="Species");    # title of the legend
   plot(plot4b);
   
   # there are NA values in the data frame that we need to deal with

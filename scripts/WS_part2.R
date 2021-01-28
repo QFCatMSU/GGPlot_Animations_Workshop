@@ -25,8 +25,8 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, # Different way to display months
                        labels= month.abb) +
-    labs(title="Zooplankton abundance",
-         subtitle="2008",
+    labs(title="Plot 2",
+         subtitle="Zooplankton abundance 2008",
          y="Number of Zooplankton");
   plot(plot2);
   
@@ -43,8 +43,8 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
-    labs(title="Zooplankton abundance",
-         subtitle="2008 - Apr to Sept",
+    labs(title="plot 2b",
+         subtitle="Zooplankton abundance 2008 - Apr to Sept",
          y="Number of Zooplankton");
   plot(plot2b);
   
