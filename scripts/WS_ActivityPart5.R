@@ -29,9 +29,9 @@
   
   # (1) Animate the plot by day
   #
-  # (2) Change the plot to animate by month
+  # (2) Change the plot to animate by month, and have the transition be 4 times as long as the pause between.
   #
-  # (3) Change the plot to animate by season
+  # (3) Change the plot to animate by season, and have the transition be half as long as the pause between.
   #
   # (4) Change the plot so that the point size varies with precipitation
   #
@@ -41,48 +41,56 @@
   #
   # (7) Adjust the fps argument. What happens to your plot output?
   
+  #
+  #
   day = seq(1:nrow(weatherData))
   month = ordered(weatherData$month, levels=month.abb[]);    # First, make sure your grouping factors are in the correct order
   season = ordered(weatherData$season, levels=c("Winter","Spring","Summer","Fall"));
-  colnames(weatherData)[1] = "day";                           # Rename the column of rownumbers to refer to the "day"
-  weatherData$month = ordered(weatherData$month,              # First, make sure your grouping factors are in the correct order
-                              levels=month.name);
-  weatherData$season = ordered(weatherData$season, 
-                               levels=c("Winter","Spring","Summer","Fall"));
   
+  #
+  #
   plot5c = ggplot(data=weatherData) +
     geom_point(mapping=aes(x=avgTemp, y=relHum, group = , color = ))+
-    labs(title = paste('Humidity (y) vs. Temperature (x) by ____ (animation)'),
-         subtitle = 'Season: {closest_state}',
-         x = 'Average Temp',
-         y = 'Humidity') +
     theme_bw() +
+    labs(title = "plot5c",
+         subtitle = "Average temperature (x) vs. Humidity (y)",
+         x = "Average Temp",
+         y = "Humidity") +
     scale_x_continuous() +
     scale_y_continuous();
   
-  plot5c.1 = plot5c + transition_states(states = ,
-                                        transition_length = ,
-                                        state_length = ,
-                                        wrap = TRUE);
+  #
+  #
+  plot5c.1 = plot5c + 
+    labs(title = "plot5c.1",
+         subtitle = "Average temperature (x) vs. Humidity (y) by    : {closest_state}",
+         x = "Average Temp",
+         y = "Humidity") +
+    transition_states(states = ,
+                      transition_length = ,
+                      state_length = ,
+                      wrap = );
   
   animate(plot5c.1, nframes = , fps = );
   
-  # anim_save() -- saving as a gif
+  #
+  #
   anim_save(filename = "anim_5c.1.gif",
             animation = plot5c.1,
-            nframes = ,       # number of frames in animation
-            fps = );           # frames per second
+            nframes = ,       
+            fps = );           
   
-  # anim_save() -- saving as an mp4 video
+  #
+  #
   anim_save(filename = "anim_5c.1.mp4",
             animation = plot5c.1,
             renderer = av_renderer(),
-            nframes = ,       # number of frames in animation
-            fps = );           # frames per second
+            nframes = ,      
+            fps = );           
   
   # Hints: 
   # Be careful of calling an excessive number of frames, or frames per second
-  # Make sure that you appropriately map the group
+  # Make sure that you appropriately map the group. Try using the term 1L for an interesting effect
   
   
   # Notes:
