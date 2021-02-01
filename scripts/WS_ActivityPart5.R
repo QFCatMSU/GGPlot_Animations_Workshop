@@ -23,7 +23,6 @@
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
                          stringsAsFactors = FALSE);
   
-<<<<<<< HEAD
   #########
   # TASKS #
   #########
@@ -45,13 +44,11 @@
   day = seq(1:nrow(weatherData))
   month = ordered(weatherData$month, levels=month.abb[]);    # First, make sure your grouping factors are in the correct order
   season = ordered(weatherData$season, levels=c("Winter","Spring","Summer","Fall"));
-=======
   colnames(weatherData)[1] = "day";                           # Rename the column of rownumbers to refer to the "day"
   weatherData$month = ordered(weatherData$month,              # First, make sure your grouping factors are in the correct order
                               levels=month.name);
   weatherData$season = ordered(weatherData$season, 
                                levels=c("Winter","Spring","Summer","Fall"));
->>>>>>> 3484fa906c2acc18e12b82436a54d63104c1efdd
   
   plot5c = ggplot(data=weatherData) +
     geom_point(mapping=aes(x=avgTemp, y=relHum, group = , color = ))+

@@ -80,7 +80,7 @@
   animate(plot5a.2, nframes = 100, fps=5);  # Number of frames in animation                    
   
   #
-  # Lets take a minte and play around with the nframes and fps. What happens to the animation?
+  # Lets take a minute and play around with the nframes and fps. What happens to the animation?
   
   #
   # Now let's try it with a slightly larger dataset, and a different plot type
