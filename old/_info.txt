@@ -1,0 +1,1 @@
+Inside this folder goes any file that will not be used for the workshop.
