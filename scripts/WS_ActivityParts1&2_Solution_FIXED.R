@@ -12,7 +12,7 @@
   # Activity #
   ############
   
-  # This time, we’ll be using the larval white sucker data. 
+  # This time, we’ll be using the larval white bass data. 
   #
   #   (1) Subset the data set from March to October for the year 2010.
   #

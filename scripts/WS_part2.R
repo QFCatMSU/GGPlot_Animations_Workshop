@@ -17,7 +17,7 @@
   # subset data and color is used as a style change here -- it is not mapped to data
   year2008 = which(abundanceData$year == 2008);
   
-  plot2 = ggplot(data=abundanceData[year2008,])+
+  plot2a = ggplot(data=abundanceData[year2008,])+
     geom_line(mapping=aes(x=month, y=zooplankton),
               color="red",
               size=1.5,
@@ -25,10 +25,10 @@
     theme_bw() +
     scale_x_continuous(breaks=1:12, # Different way to display months
                        labels= month.abb) +
-    labs(title="Plot 2",
+    labs(title="Plot 2a",
          subtitle="Zooplankton abundance 2008",
          y="Number of Zooplankton");
-  plot(plot2);
+  plot(plot2a);
   
   # 3 conditions being used to subset the data
   year2008_sub = which(abundanceData$year == 2008 &

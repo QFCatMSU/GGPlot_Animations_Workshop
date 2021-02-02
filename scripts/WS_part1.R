@@ -16,14 +16,14 @@
                            stringsAsFactors = FALSE);  # mention R v3 vs 4
   
   # just print out the points of data
-  plot1 = ggplot(data=abundanceData) +              # canvas created and data frame established
+  plot1a = ggplot(data=abundanceData) +              # canvas created and data frame established
     geom_point(mapping=aes(x=month, y=zooplankton), # columns from the data frame
                color="blue",   # may color names work here: https://stat.columbia.edu/~tzheng/files/Rcolor.pdf
                size=2,         # multiplier (x2)
                shape=1) +      # can use values 1-25: http://www.sthda.com/english/wiki/ggplot2-point-shapes
-    labs(title="plot 1",
+    labs(title="plot 1a",
          subtitle="Zooplankton abundance 2008-2011");
-  plot(plot1);
+  plot(plot1a);
   
   # change the month number to month abbreviation 
   # R's built in constants (it's not much...): https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Constants
