@@ -13,7 +13,7 @@
   # - saving as GIF
   # - saving as MP4
   
-  #
+  # We are going to be running the code, not sourcing!
   # First let"s load the data
   # This should look familiar 
   abundanceData = read.csv(file = "data/abundance.csv", sep = ",",
@@ -58,7 +58,7 @@
   
   #
   # Now we have a basic plot, we can add a component that contains what we want to animate across
-  # as well as how fast we want to animate, any pauses we want, and any dynamic labels.
+  # This is the same as adding creating a new ggplot object from scratch 
   plot5a.1 = plot5a +
     labs(title = "Plot 5a.1",
          subtitle = "Zooplankton vs. Larval white sucker abundance: {closest_state}", # {closest_state} will refer to the varying state
@@ -79,9 +79,12 @@
   
   #
   # Now let"s see our beautiful creation!
-  animate(plot5a.1, nframes = 25, fps = 5);  # 25 frames / 5 frames per second. 
+  animate(plot=plot5a.1, 
+          nframes = 50, 
+          fps = 3,
+          duration=NULL);  # 50 frames / 3 frames per second. 
   
-  plot5a.2 = plot5a + transition_reveal(along = month) +
+  plot5a.2 = plot5a + transition_reveal(along = month, range=NULL, keep_last=TRUE) +
     labs(title = "Plot 5a.2",
          subtitle = "Zooplankton vs. Larval white sucker abundance",
          x = "Month",
@@ -95,7 +98,10 @@
   #
   # We might want a few more frames for this type of animation
   # The more frames you add, the smoother the transition, but the longer it takes to render!
-  animate(plot5a.2, nframes = 100, fps=5);                    
+  animate(plot=plot5a.2, 
+          nframes = 100, 
+          fps=10,
+          duration=NULL);                    
   
   #
   # Lets take a minute and play around with the nframes and fps. What happens to the animation?
@@ -112,9 +118,7 @@
          subtitle = "Humidity (y) vs. Temperature (x)",
          x = "Average Temp", 
          y = "Humidity") +
-    theme_bw() +
-    scale_x_continuous() +
-    scale_y_continuous();
+    theme_bw();
   
   # 
   # Take a look at the base plot first
@@ -130,7 +134,10 @@
     transition_time(time = precipNum,      # We can transition by a continuous variable too
                     range = NULL);         # Range can be changed to limit the "time"
   
-  animate(plot5b.1, nframes = 100, fps=5); 
+  animate(plot=plot5b.1, 
+          nframes = 50, 
+          fps=3,
+          duration=NULL); 
   
   #
   # Now try animating by day, but let's restrict how many days we want to show
@@ -140,9 +147,12 @@
          x = "Average Temp", 
          y = "Humidity") +
     transition_time(time = X, # X represents each row, which is one day of data!
-                    range = c(100L,200L));         # Range can be changed to limit the "time"
+                    range = c(100,200));         # Range can be changed to limit the "time"
   
-  animate(plot5b.2, nframes = 100, fps=5); 
+  animate(plot=plot5b.2, 
+          nframes = 100, 
+          fps=1,
+          duration=NULL); 
   
   # Saving our animated plots 
   # anim_save() can also take parameters from animate()

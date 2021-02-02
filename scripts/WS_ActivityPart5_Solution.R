@@ -48,7 +48,7 @@
   #
   #
   plot5c = ggplot(data=weatherData) +
-    geom_point(mapping=aes(x=avgTemp, y=relHum, group = 1L, color = season))+
+    geom_point(mapping=aes(x=avgTemp, y=relHum, group=season, color = season))+
     theme_bw() +
     labs(title = "plot5c",
          subtitle = "Average temperature (x) vs. Humidity (y)",
