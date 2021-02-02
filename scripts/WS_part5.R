@@ -14,7 +14,7 @@
   # - saving as MP4
   
   #
-  # First let"s load the data...
+  # First let"s load the data
   # This should look familiar 
   abundanceData = read.csv(file = "data/abundance.csv", sep = ",",
                            header=TRUE, na.strings = c("", NA),
@@ -29,6 +29,7 @@
   coeff_WB_Zoo = max(abundanceData$whitebass, na.rm = TRUE) /  
     max(abundanceData$zooplankton, na.rm = TRUE);
   
+  #
   #Let"s create a vector that orders our month"s correctly
   month = ordered(abundanceData$month, levels = month.abb[]); 
   
@@ -71,7 +72,6 @@
                       transition_length = 1, # relative animation time (default: 1)
                       state_length = 2,      # relative length of the pause between states (default: 1)
                       wrap = TRUE);          # Do you want to the last state to wrap around and start over again? Yes, yes you do.
-  
   
   #
   # Let"s pause and take a look at this next function. It can do a lot to modify your animation.
@@ -154,7 +154,6 @@
             nframes = 100,
             fps = 5);
   
-  # anim_save() -- saving as an mp4 video
   anim_save(filename = "media/abundance.mp4",
             animation = plot5a.2,
             renderer = av_renderer(),

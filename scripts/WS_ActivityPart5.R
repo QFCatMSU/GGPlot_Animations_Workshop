@@ -75,13 +75,12 @@
   
   #
   #
+  
   anim_save(filename = "anim_5c.1.gif",
             animation = plot5c.1,
             nframes = ,       
             fps = );           
   
-  #
-  #
   anim_save(filename = "anim_5c.1.mp4",
             animation = plot5c.1,
             renderer = av_renderer(),
@@ -90,7 +89,7 @@
   
   # Hints: 
   # Be careful of calling an excessive number of frames, or frames per second
-  # Make sure that you appropriately map the group. Try using the term 1L for an interesting effect
+  # Try mapping "group = 1L" for an interesting effect!
   
   
   # Notes:
