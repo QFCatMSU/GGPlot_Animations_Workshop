@@ -1,8 +1,8 @@
 {
   # PART 5 ACTIVITY -- ANIMATION
   
-  rm(list=ls());                         # clear Console Window
-  options(show.error.locations = TRUE);  # show line numbers on error
+  rm(list=ls());                      
+  options(show.error.locations = TRUE); 
   
   library(package=ggplot2);
   library(package=gganimate);
@@ -10,15 +10,6 @@
   library(package=htmltools);
   library(package=gifski);      
   library(package=transformr);  
-  
-  # TASKS
-  # 1. Animate the plot by day
-  # 2. Change the plot to animate by month
-  # 3. Change the plot to animate by season
-  # 4. Change the plot so that the point size varies with precipitation
-  # 5. Change the plot so that the color varies with the transition state
-  # 6. Adjust the nframes argument. What happens to your plot output?
-  # 7. Adjust the fps argument. What happens to your plot output?
   
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
                          stringsAsFactors = FALSE);
@@ -41,14 +32,10 @@
   #
   # (7) Adjust the fps argument. What happens to your plot output?
   
-  #
-  #
   day = seq(1:nrow(weatherData))
   month = ordered(weatherData$month, levels=month.abb[]);    # First, make sure your grouping factors are in the correct order
   season = ordered(weatherData$season, levels=c("Winter","Spring","Summer","Fall"));
   
-  #
-  #
   plot5c = ggplot(data=weatherData) +
     geom_point(mapping=aes(x=avgTemp, y=relHum, group = , color = ))+
     theme_bw() +
@@ -59,8 +46,6 @@
     scale_x_continuous() +
     scale_y_continuous();
   
-  #
-  #
   plot5c.1 = plot5c + 
     labs(title = "plot5c.1",
          subtitle = "Average temperature (x) vs. Humidity (y) by    : {closest_state}",
@@ -72,9 +57,6 @@
                       wrap = );
   
   animate(plot5c.1, nframes = , fps = );
-  
-  #
-  #
   
   anim_save(filename = "anim_5c.1.gif",
             animation = plot5c.1,
@@ -89,7 +71,7 @@
   
   # Hints: 
   # Be careful of calling an excessive number of frames, or frames per second
-  # Try mapping "group = 1L" for an interesting effect!
+  # Try mapping "group = 1L" for an interesting effect! This is not necessary, but makes the plot more dynamic.
   
   
   # Notes:
