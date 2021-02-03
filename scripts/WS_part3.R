@@ -21,7 +21,7 @@
   # color is used as a mapping variable to map the 4 years to the plot --
   plot3a = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x=month, y=zooplankton, color=year),  # mapping color to year (this is a problem...)
-              #    color="blue",   # leaving this in will conflict with the color mapping
+              #    color="red",   # leaving this in will conflict with the color mapping
               size=1.5,
               linetype=1) +
     theme_bw() +
@@ -84,7 +84,7 @@
     geom_line(mapping=aes(x=month, y=zooplankton, linetype=factor(year)),
               size=1.25) +
     theme_minimal() +
-    theme(legend.position = c(.1,.8),          # change legend placement 
+    theme(legend.position = c(.15,.8),          # change legend placement 
           legend.key.width = unit(3,"cm")) +   # change legend width
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
