@@ -75,7 +75,7 @@
   
   
   # Let"s pause and take a look at this next function. It can do a lot to modify your animation.
-  ??gganimate::animate;
+#  ??gganimate::animate;
   
   
   # Now let"s see our beautiful creation!
