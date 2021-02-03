@@ -84,7 +84,7 @@
     geom_line(mapping=aes(x=month, y=zooplankton, linetype=factor(year)),
               size=1.25) +
     theme_minimal() +
-    theme(legend.position = c(.1,.8),          # change legend placement 
+    theme(legend.position = c(.15,.8),          # change legend placement 
           legend.key.width = unit(3,"cm")) +   # change legend width
     scale_x_continuous(breaks=1:12, 
                        labels= month.abb) +
