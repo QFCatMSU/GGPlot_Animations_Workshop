@@ -21,13 +21,13 @@
                            stringsAsFactors = FALSE);
   
   apr_to_sept = which(abundanceData$month >= 4 &    
-                        abundanceData$month <= 9);   
+                      abundanceData$month <= 9);   
   
   coeff_WS_Zoo = max(abundanceData$whitesucker, na.rm = TRUE) /
-    max(abundanceData$zooplankton, na.rm = TRUE);
+                 max(abundanceData$zooplankton, na.rm = TRUE);
   
   coeff_WB_Zoo = max(abundanceData$whitebass, na.rm = TRUE) /  
-    max(abundanceData$zooplankton, na.rm = TRUE);
+                 max(abundanceData$zooplankton, na.rm = TRUE);
   
   #Let"s create a vector that orders our month"s correctly
   month = ordered(abundanceData$month, levels = month.abb[]); 
@@ -85,7 +85,10 @@
           duration=NULL);  # 50 frames / 3 frames per second. 
   
   # Alternatively, we can map animation to the month, and have each state reveal data along that axis
-  plot5a.2 = plot5a + transition_reveal(along = month, range=NULL, keep_last=TRUE) +
+  plot5a.2 = plot5a + 
+    transition_reveal(along = month,
+                      range=NULL, 
+                      keep_last=TRUE) +
     labs(title = "Plot 5a.2",
          subtitle = "Zooplankton vs. Larval white sucker abundance",
          x = "Month",
@@ -106,7 +109,8 @@
   # Lets take a minute and play around with the nframes and fps. What happens to the animation?
   
   # Now let"s try it with a slightly larger dataset, and a different plot type
-  weatherData = read.csv(file = "data/LansingNOAA2016-3.csv", stringsAsFactors = FALSE);
+  weatherData = read.csv(file = "data/LansingNOAA2016-3.csv", 
+                         stringsAsFactors = FALSE);
   
   # Start with our basic ggplot
   plot5b = ggplot(data = weatherData) +
