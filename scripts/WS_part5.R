@@ -68,7 +68,7 @@
     theme_bw() +
     scale_x_continuous(breaks = 1:12, 
                        labels = month.abb)+
-    transition_states(states = year,         # map animation to the year. Each year is a single frame!
+    transition_states(states = year,         # map animation to the year
                       transition_length = 1, # relative animation time (default: 1)
                       state_length = 2,      # relative length of the pause between states (default: 1)
                       wrap = TRUE);          # Do you want to the last state to wrap around and start over again? Yes, yes you do.
