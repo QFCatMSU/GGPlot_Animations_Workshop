@@ -97,7 +97,7 @@
     theme_bw() +
     scale_x_continuous(breaks = 1:12, 
                        labels = month.abb)+       
-    facet_wrap( ~ year);  # and if you like, facet your plot by year
+    facet_wrap(facets= ~ year);  # and if you like, facet your plot by year
   
   # We might want a few more frames for this type of animation
   # The more frames you add, the smoother the transition, but the longer it takes to render!
