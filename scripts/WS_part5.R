@@ -33,7 +33,7 @@
   month = ordered(abundanceData$month, levels = month.abb[]); 
   
   # Let"s start with a similar plot to what we made during Part 4, but this is incomplete!
-  # Here, we are grouping by "year" to prepare for plot for when we add an animation component
+  # Here, we are grouping by "year" to prepare the plot for when we add an animation component
   plot5a = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x = month, y = whitesucker, 
                           group = year, color="White Sucker")) +
