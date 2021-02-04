@@ -144,8 +144,8 @@
          subtitle = "Humidity (y) vs. Temperature (x) by Day: {frame_time}",
          x = "Average Temp", 
          y = "Humidity") +
-    transition_time(time = X, # X represents each row, which is one day of data!
-                    range = c(100,200));         # Range can be changed to limit the "time"
+    transition_time(time = 1:nrow(weatherData), # each row gets a time slot, which is one day of data!
+                    range = c(100L, 200L));     # Range can be changed to limit the "time"
   
   animate(plot=plot5b.2, 
           nframes = 100, 
