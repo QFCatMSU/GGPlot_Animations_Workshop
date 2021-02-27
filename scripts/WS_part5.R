@@ -33,7 +33,7 @@
   month = ordered(abundanceData$month, levels = month.abb[]); 
   
   # Let"s start with a similar plot to what we made during Part 4, but this is incomplete!
-  # Here, we are grouping by "year" to prepare for plot for when we add an animation component
+  # Here, we are grouping by "year" to prepare the plot for when we add an animation component
   plot5a = ggplot(data=abundanceData[apr_to_sept,])+
     geom_line(mapping=aes(x = month, y = whitesucker, 
                           group = year, color="White Sucker")) +
@@ -68,7 +68,7 @@
     theme_bw() +
     scale_x_continuous(breaks = 1:12, 
                        labels = month.abb)+
-    transition_states(states = year,         # map animation to the year. Each year is a single frame!
+    transition_states(states = year,         # map animation to the year
                       transition_length = 1, # relative animation time (default: 1)
                       state_length = 2,      # relative length of the pause between states (default: 1)
                       wrap = TRUE);          # Do you want to the last state to wrap around and start over again? Yes, yes you do.
